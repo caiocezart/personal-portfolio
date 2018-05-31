@@ -1,0 +1,24 @@
+site: .
+s3_bucket: caiotrevisan.com
+s3_endpoint: ap-southeast-2
+s3_reduced_redundancy: true
+
+max_age: 120
+gzip: true
+
+cloudfront_distribution_id: <%= ENV['caiotrevisan_com_cloudfront_distribution_id'] %>
+cloudfront_invalidate_root: true
+cloudfront_wildcard_invalidation: true
+cloudfront_distribution_config:
+  default_cache_behavior:
+    min_ttl: <%= 60 * 60 * 24 %>
+  aliases:
+    quantity: 2
+    items:
+      - caiotrevisan.com
+      - www.caiotrevisan.com
+
+exclude_from_upload:
+  - .git
+  - .gitignore
+  - README.md
